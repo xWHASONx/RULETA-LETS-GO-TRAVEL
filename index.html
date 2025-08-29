@@ -1,39 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- ESTRUCTURA FINAL DE LA CABECERA -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruleta de Aventuras - Gana tu Viaje</title>
+    
+    <!-- Enlaces a la hoja de estilos y a la fuente de Google -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Contenedor principal de la aplicación -->
     <div class="container">
         
         <h1>GIRA LA RULETA Y GANA</h1>
         
+        <!-- Contenedor de la ruleta con todos sus elementos visuales -->
         <div class="roulette-container">
             <div class="pointer"></div>
-            <!-- CAMBIO: Reemplazamos la imagen del engranaje por un div con el emoji de avión -->
+            <!-- EMOJI DE AVIÓN ESTÁTICO (reemplaza al engranaje) -->
             <div id="center-emoji">✈️</div>
+            <!-- El canvas donde se dibuja la ruleta (sin width/height para ser responsivo) -->
             <canvas id="roulette-canvas"></canvas>
         </div>
         
+        <!-- Párrafo para mostrar mensajes dinámicos al usuario -->
         <p id="spin-message" class="spin-message"></p>
         
+        <!-- Contenedor para mostrar el premio SI EL USUARIO YA JUGÓ (oculto por defecto) -->
         <div id="previous-winner-container" class="coupon-code previous-winner hidden">
             <p>¡Ya reclamaste tu premio! Tu código es:</p>
             <strong id="previous-winner-code"></strong>
+            <!-- INSTRUCCIONES ACTUALIZADAS Y FINALES -->
             <div class="winner-instructions">
                 <p><strong>Paso 1:</strong> ¡Toma un pantallazo de este código!</p>
-                <p><strong>Paso 2:</strong> Envíalo al número del asesor que te contactó y confirma la hora de tu cita para reclamar tu obsequio.</p>
+                <p><strong>Paso 2:</strong> Envíalo al asesor que te contactó y confirma tu cita por Zoom, donde podrás reclamar tu obsequio.</p>
+                <p><small>Si tienes dudas sobre tu premio, pregúntale a tu asesor por los detalles.</small></p>
             </div>
         </div>
 
+        <!-- El botón principal para girar la ruleta -->
         <button id="spin-btn">GIRAR AHORA</button>
     </div>
 
+    <!-- El pop-up o modal que aparece al ganar (oculto por defecto) -->
     <div id="winner-modal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
@@ -43,17 +55,21 @@
             <div class="coupon-code">
                 <p>Tu código de premio es:</p>
                 <strong id="winner-code"></strong>
+                <!-- INSTRUCCIONES ACTUALIZADAS Y FINALES (también en el modal) -->
                 <div class="winner-instructions">
                     <p><strong>Paso 1:</strong> ¡Toma un pantallazo de este código!</p>
-                    <p><strong>Paso 2:</strong> Envíalo al número del asesor que te contactó y confirma la hora de tu cita para reclamar tu obsequio.</p>
+                    <p><strong>Paso 2:</strong> Envíalo al asesor que te contactó y confirma tu cita por Zoom, donde podrás reclamar tu obsequio.</p>
+                    <p><small>Si tienes dudas sobre tu premio, pregúntale a tu asesor por los detalles.</small></p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Elementos de Audio para los efectos de sonido -->
     <audio id="tick-sound" src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_c4826b6873.mp3" preload="auto"></audio>
     <audio id="win-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_191983a005.mp3" preload="auto"></audio>
 
+    <!-- Enlaces a los scripts (el de confeti y el nuestro) -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
 </body>
