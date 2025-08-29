@@ -9,16 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // CAMBIO: Nueva paleta de colores más vibrante y saturada
     const premios = [
-        { text: 'Bono 50%', subtext: 'en tiquetes aéreos', color: '#ff4d4d', code: 'BONO50', winnable: true }, // Rojo vibrante
-        { text: 'Descuento', subtext: '$500.000 COP', color: '#1a75ff', code: 'DESC500', winnable: true }, // Azul intenso
-        { text: 'Bono', subtext: 'Orlando, Florida', color: '#ffab00', textColor: '#000', code: 'ORLANDO', winnable: true }, // Naranja
-        { text: 'Descuento', subtext: '$400.000 COP', color: '#9d00ff', code: 'DESC400', winnable: true }, // Púrpura
-        { text: '¡Viaje TODO PAGO!', subtext: 'Premio Mayor', color: 'gold', code: 'VIATODO', winnable: false }, // Dorado se mantiene
-        { text: 'Descuento', subtext: '$300.000 COP', color: '#ff6f00', code: 'DESC300', winnable: true }, // Naranja oscuro
-        { text: 'Bono', subtext: 'Las Vegas', color: '#00c853', code: 'LASVEGAS', winnable: true }, // Verde esmeralda
-        { text: 'Descuento', subtext: '$200.000 COP', color: '#00b8d4', code: 'DESC200', winnable: true }, // Cyan
-        { text: 'Inténtalo', subtext: 'de Nuevo', color: '#455a64', winnable: false }, // Gris oscuro azulado
-        { text: 'Descuento', subtext: '$100.000 COP', color: '#d500f9', code: 'DESC100', winnable: true }, // Fucsia
+        // CAMBIO: Este premio ahora NO se puede ganar.
+        { text: 'Bono 50%', subtext: 'en tiquetes aéreos', color: '#ff4d4d', code: 'BONO50', winnable: false }, 
+        { text: 'Descuento', subtext: '$500.000 COP', color: '#1a75ff', code: 'DESC500', winnable: true },
+        { text: 'Bono', subtext: 'Orlando, Florida', color: '#ffab00', textColor: '#000', code: 'ORLANDO', winnable: true },
+        { text: 'Descuento', subtext: '$400.000 COP', color: '#9d00ff', code: 'DESC400', winnable: true },
+        { text: '¡Viaje TODO PAGO!', subtext: 'Premio Mayor', color: 'gold', code: 'VIATODO', winnable: false },
+        { text: 'Descuento', subtext: '$300.000 COP', color: '#ff6f00', code: 'DESC300', winnable: true },
+        { text: 'Bono', subtext: 'Las Vegas', color: '#00c853', code: 'LASVEGAS', winnable: true },
+        { text: 'Descuento', subtext: '$200.000 COP', color: '#00b8d4', code: 'DESC200', winnable: true },
+        { text: 'Inténtalo', subtext: 'de Nuevo', color: '#455a64', winnable: false },
+        { text: 'Descuento', subtext: '$100.000 COP', color: '#d500f9', code: 'DESC100', winnable: true },
     ];
 
     // --- Selectores del DOM ---
