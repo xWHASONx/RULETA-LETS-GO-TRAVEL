@@ -1,0 +1,184 @@
+:root {
+    --neon-yellow: #FFFF00;
+    --dark-bg: #1f1f1f;
+    --font-family: 'Montserrat', sans-serif;
+    --neon-red: #ff003c; /* CAMBIO: Variable para el nuevo color rojo */
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: var(--font-family);
+    background-color: var(--dark-bg);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://i.imgur.com/kwu3dx2.png");
+    background-size: 250px;
+    opacity: 0.05;
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #00aaff, 0 0 30px #00aaff;
+}
+
+.spin-message {
+    color: var(--neon-yellow);
+    font-size: 1.1rem;
+    font-weight: 500;
+    min-height: 25px;
+}
+
+.roulette-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0 0 35px rgba(0, 170, 255, 0.6));
+    transition: filter 0.5s;
+}
+
+#roulette-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* CAMBIO: Estilos para el nuevo emoji de avión estático */
+#center-emoji {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    font-size: 4rem; /* Ajusta el tamaño del emoji */
+    text-shadow: 0 0 15px rgba(0,0,0,0.7);
+}
+
+.pointer {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    /* CAMBIO: El puntero ahora es rojo y brillante */
+    border-top: 30px solid var(--neon-red);
+    z-index: 10;
+    filter: drop-shadow(0 0 10px var(--neon-red));
+}
+
+@keyframes winner-pulse {
+    0% { filter: drop-shadow(0 0 35px rgba(0, 170, 255, 0.6)); }
+    50% { filter: drop-shadow(0 0 55px rgba(255, 255, 0, 1)) brightness(1.3); }
+    100% { filter: drop-shadow(0 0 35px rgba(0, 170, 255, 0.6)); }
+}
+
+.roulette-container.winner-pulse {
+    animation: winner-pulse 1.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.5); }
+    50% { transform: scale(1.05); box-shadow: 0 0 25px 15px rgba(255, 255, 0, 0.7); }
+    100% { transform: scale(1); box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.5); }
+}
+
+#spin-btn {
+    padding: 18px 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: var(--neon-yellow);
+    color: #333;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    animation: pulse 2.5s infinite;
+}
+
+#spin-btn:hover:not(:disabled) {
+    animation-play-state: paused;
+    transform: scale(1.1);
+    background-color: #fff;
+}
+
+#spin-btn:disabled {
+    background-color: #555;
+    color: #999;
+    cursor: not-allowed;
+    animation: none;
+    box-shadow: none;
+    transform: scale(1);
+}
+
+/* --- (Estilos del Modal y Cupón sin cambios) --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+.modal-overlay.visible { opacity: 1; visibility: visible; }
+.modal-content { background-color: #111; padding: 25px; border-radius: 15px; border: 2px solid var(--neon-yellow); box-shadow: 0 0 30px 10px rgba(255, 255, 0, 0.5); text-align: center; position: relative; max-width: 500px; width: 90%; transform: scale(0.8); transition: transform 0.3s ease; }
+.modal-overlay.visible .modal-content { transform: scale(1); }
+.close-btn { position: absolute; top: 10px; right: 15px; font-size: 2rem; color: #fff; cursor: pointer; transition: transform 0.2s ease, color 0.2s ease; }
+.close-btn:hover { transform: scale(1.2) rotate(90deg); color: var(--neon-yellow); }
+.modal-content h2 { font-size: 2rem; color: var(--neon-yellow); margin-top: 0; text-shadow: 0 0 10px var(--neon-yellow); }
+.modal-content p { font-size: 1.1rem; margin-bottom: 15px; }
+#winner-text { font-size: 1.5rem; font-weight: 700; color: #fff; line-height: 1.4; }
+.coupon-code { margin-top: 20px; padding: 15px; background-color: rgba(0,0,0,0.3); border: 1px dashed var(--neon-yellow); border-radius: 10px; }
+.coupon-code p { margin: 0; font-size: 1rem; color: #ccc; }
+#winner-code, #previous-winner-code { font-size: 1.8rem; font-weight: 700; color: var(--neon-yellow); letter-spacing: 2px; display: block; margin: 10px 0; word-wrap: break-word; }
+.hidden { display: none !important; }
+.winner-instructions { margin-top: 20px; padding-top: 15px; border-top: 1px solid #444; text-align: left; font-size: 0.95rem; color: #ddd; line-height: 1.6; }
+.winner-instructions p { color: #ddd; margin-bottom: 10px; }
+.winner-instructions strong { color: var(--neon-yellow); font-weight: 700; }
+.previous-winner { width: 100%; max-width: 450px; }
+
+@media (min-width: 600px) {
+    body { padding: 40px 20px; }
+    h1 { font-size: 2.8rem; }
+    .pointer { border-left-width: 25px; border-right-width: 25px; border-top-width: 40px; }
+    #spin-btn { font-size: 1.4rem; padding: 18px 60px; }
+    .modal-content { padding: 40px; }
+    #winner-text { font-size: 1.8rem; }
+    #winner-code, #previous-winner-code { font-size: 2.2rem; }
+    .winner-instructions { font-size: 1rem; }
+    #center-emoji { font-size: 5rem; } /* Emoji más grande en escritorio */
+}

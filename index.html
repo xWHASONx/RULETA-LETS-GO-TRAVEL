@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta de Aventuras - Gana tu Viaje</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        
+        <h1>GIRA LA RULETA Y GANA</h1>
+        
+        <div class="roulette-container">
+            <div class="pointer"></div>
+            <!-- CAMBIO: Reemplazamos la imagen del engranaje por un div con el emoji de avión -->
+            <div id="center-emoji">✈️</div>
+            <canvas id="roulette-canvas"></canvas>
+        </div>
+        
+        <p id="spin-message" class="spin-message"></p>
+        
+        <div id="previous-winner-container" class="coupon-code previous-winner hidden">
+            <p>¡Ya reclamaste tu premio! Tu código es:</p>
+            <strong id="previous-winner-code"></strong>
+            <div class="winner-instructions">
+                <p><strong>Paso 1:</strong> ¡Toma un pantallazo de este código!</p>
+                <p><strong>Paso 2:</strong> Envíalo al número del asesor que te contactó y confirma la hora de tu cita para reclamar tu obsequio.</p>
+            </div>
+        </div>
+
+        <button id="spin-btn">GIRAR AHORA</button>
+    </div>
+
+    <div id="winner-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>¡FELICIDADES!</h2>
+            <p>Has ganado un premio increíble:</p>
+            <h3 id="winner-text"></h3>
+            <div class="coupon-code">
+                <p>Tu código de premio es:</p>
+                <strong id="winner-code"></strong>
+                <div class="winner-instructions">
+                    <p><strong>Paso 1:</strong> ¡Toma un pantallazo de este código!</p>
+                    <p><strong>Paso 2:</strong> Envíalo al número del asesor que te contactó y confirma la hora de tu cita para reclamar tu obsequio.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="tick-sound" src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_c4826b6873.mp3" preload="auto"></audio>
+    <audio id="win-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_191983a005.mp3" preload="auto"></audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
